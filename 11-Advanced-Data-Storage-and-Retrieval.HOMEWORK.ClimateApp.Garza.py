@@ -7,9 +7,8 @@
 
 
 from flask import Flask, jsonify, send_file
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
-
 
 # ### Python SQL toolkit
 
@@ -73,8 +72,12 @@ def rain_range(start_date, end_date):
     start = start_date - timedelta(days=365)
     end = end_date - timedelta(days=365)
     
-    temp_values = session.query(label('max_prcp',func.max(measurement.prcp)),                    label('min_prcp',func.min(measurement.prcp)),                    label('avg_prcp',func.avg(measurement.prcp))).                    filter(measurement.date >= start).                    filter(measurement.date <= end)
-
+    temp_values = session.query(label('max_prcp',func.max(measurement.prcp)),\
+                    label('min_prcp',func.min(measurement.prcp)),\
+                    label('avg_prcp',func.avg(measurement.prcp))).\
+                    filter(measurement.date >= start).\
+                    filter(measurement.date <= end)
+    
 @app.route("/api/v1.0/precipitation")
 def rain_json():
     results = rain_range(measurement.prcp)
@@ -101,7 +104,7 @@ def tobs_range():
     current_time = datetime.now()
     past_year = current_time - timedelta(weeks=100)
 
-    tobs_st = session.query(measurement.date, measurement.tobs).                        filter(measurement.date > past_year)
+    tobs_st = session.query(measurement.date, measurement.tobs).filter(measurement.date > past_year)
 
 @app.route("/api/v1.0/tobs")
 def temps_json():
