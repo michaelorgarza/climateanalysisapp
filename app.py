@@ -60,7 +60,7 @@ def startend(start,end):
     return(data)
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
 
 
 # 2016-01-01
