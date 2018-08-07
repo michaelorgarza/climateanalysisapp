@@ -154,3 +154,16 @@ def startend(start, end):
     return jsonify(temp_dict)
 
 
+
+
+# # Getting a list of dates for the last 12 months
+# base_date = datetime.strptime("2017-08-23", "%Y-%m-%d")
+# numdays = 365
+# date_list = [base_date - timedelta(days=x) for x in range(0, numdays)]
+
+# # Converting them to a list of strings
+# str_dates = []
+# for date in date_list:
+#     new_date = date.strftime("%Y-%m-%d")
+#     str_dates.append(new_date)
+

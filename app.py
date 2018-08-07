@@ -29,19 +29,6 @@ station = Base.classes.station
 session = Session(engine)
 #################################################
 
-# Getting a list of dates for the last 12 months
-base_date = datetime.strptime("2017-08-23", "%Y-%m-%d")
-numdays = 365
-date_list = [base_date - timedelta(days=x) for x in range(0, numdays)]
-
-# Converting them to a list of strings
-str_dates = []
-for date in date_list:
-    new_date = date.strftime("%Y-%m-%d")
-    str_dates.append(new_date)
-
-
-
 @app.route("/")
 def home():
     data = climatefunc.home()
